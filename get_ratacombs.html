@@ -1,0 +1,370 @@
+<!--
+    Hello! Thank you for using this layout. I hope that you have a fun
+    time customizing it to your liking. For your ease of understanding,
+    I have labeled/explained certain things in both the html and css files.
+    Once you understand the structure, feel free to get rid of these comments.
+-->
+<!DOCTYPE html>
+<html>
+    <!-- head -->
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- change name of site in browser tab-->
+        <title> Sip Sip Soup Homepage </title>
+        <style>
+            /*
+            --Fonts-- 
+                These are the font faces used for this theme. 
+                If you would like to change the fonts used, replace
+                the source url with a new font file. do not change 
+                the font family name, as this is used throughout 
+                this stylesheet. 
+            */
+            @font-face {
+                font-family: 'header';
+                src: url(origa___.ttf);
+            }
+            @font-face {
+                font-family: 'title';
+                src: url(Pixel\ Square\ Bold10.ttf);
+            }
+            @font-face {
+                font-family: 'main';
+                src: url(Pixel\ Square\ 10.ttf);
+            }
+            /*
+                I have set up some variables for the colors 
+                used throughout the theme. Here, you can easily change 
+                the colors/values of multiple elements. These values are
+                reffered to throughout this stylesheet, so please do not 
+                change the names of the variables. 
+
+                themeLight and themeDark have the same colors, just reversed.
+                If you change these, please make sure to use colors with 
+                a minimum contrast of 4.5 : 1 (can be checked in inspector under
+                accessibility or with color contrast checker)
+            */
+
+            :root{
+                --spacing: 13px;
+            }
+
+            .themeLight{
+                --mainColor: #eed09e;
+                --accColor: #a88b5b;
+                --mainText: #292216;
+                --accText: #685638;
+            }
+
+            .themeDark{
+                --mainColor: #292216;
+                --accColor: #685638;
+                --mainText: #eed09e;
+                --accText: #a88b5b;
+            }
+
+            *{
+                scrollbar-color: var(--mainText) var(--mainColor);
+            }
+
+            a{
+                color: var(--accText);
+            }
+            a:hover{
+                color: var(--mainText);
+            }
+            a:visited{
+                color: var(--mainText);
+            }
+            html{
+                background-color: var(--mainColor);
+                color: var(--mainText);
+                font-family: 'main';
+                font-size: 1.1em;
+            }
+            footer{
+                text-align: center;
+                margin: 5px;
+                color: var(--accText);
+            }
+
+            #mainGrid{
+                display: grid;
+                grid-template-columns: 20% auto 20%;
+                grid-template-rows: auto 162px 362px;
+                width: 900px;
+                margin: 30px auto;  
+            }
+
+            #gridItem1{
+                grid-column: 1/4;
+                grid-row: 1/2;
+                border: var(--accColor) 3px dashed;
+            }
+            #gridItem2{
+                grid-column: 1/2;
+                grid-row: 2/4;
+                border: var(--accColor) 3px dashed;
+                border-top: none;
+                position: relative;
+            }
+
+            #gridItem3{
+                grid-column: 2/3;
+                grid-row: 2/3;
+                overflow: scroll;
+                border: var(--accColor) 3px dashed;
+                border-top: none;
+                border-left: none;
+            }
+            #gridItem4{
+                grid-column: 3/4;
+                grid-row: 2/3;
+                overflow: scroll;
+                border: var(--accColor) 3px dashed;
+                border-top: none;
+                border-left: none;
+            }
+            #gridItem5{
+                grid-column: 2/4;
+                grid-row: 3/4;
+                overflow: scroll;
+                border: var(--accColor) 3px dashed;
+                border-top: none;
+                border-left: none;
+            }
+            #gridItem6{
+                grid-column: 1/4;
+                grid-row: 4/5;
+                border: var(--accColor) 3px dashed;
+                border-top: none;
+            }
+
+            #header{
+                font-family: 'header';
+                font-size: 2em;
+                text-align: center;
+                margin: var(--spacing);
+            }
+
+            #navigation ul{
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+            }
+            #navigation li a{
+                display: block;
+                text-align: center;
+                text-decoration: none;
+                background-color: var(--mainColor);
+                color: var(--accText);
+                padding: var(--spacing);
+            }
+            #navigation li a:hover{
+                background-color: var(--accColor);
+            }
+            #navigation li a:hover::before, #navigation li a:hover::after{
+                content: ' ▫ ';
+            }
+            #navigation li a.active::before, #navigation li a.active::after{
+                content: ' ▪ ';
+            }
+
+            #switch{
+                display: block; 
+                position: absolute;
+                bottom: 0;
+                font-family: 'main';
+                background-color: var(--accText);
+                color: var(--mainColor);
+                padding: var(--spacing);
+                text-align: center;
+                border: none;
+                width: 100%;
+                
+            }
+            #switch:hover{
+                color: var(--mainColor);
+                background-color: var(--mainText);
+            }
+
+            .title{
+                font-family: 'title';
+                background-color: var(--accColor);
+                
+            }
+            .title h2{
+                margin: var(--spacing);
+                padding: var(--spacing);
+                
+            }
+            .content{
+                margin: var(--spacing);
+            }
+
+            @media (min-height: 750px) and (max-height: 865px){
+                #mainGrid{
+                    grid-template-rows: auto 162px 494px;
+                }
+            }
+
+            @media (max-width: 896px){
+                html{
+                    font-size: 1em;
+                }
+                #mainGrid{
+                    display: flex;
+                    flex-direction: column;
+                    width: 80%;
+                }
+                #header{
+                    font-size: 1.5em;
+                }
+                #gridItem3{
+                    border-left: var(--accColor) 3px dashed;
+                }
+                #gridItem4{
+                    border-left: var(--accColor) 3px dashed;
+                }
+                #gridItem5{
+                    border-left: var(--accColor) 3px dashed;
+                } 
+            }
+        </style>
+    </head>
+    <!-- body -->
+    <body>
+        <!--
+            This layout relies on grid positioning. The mainGrid controls the 
+            layout, and each grid item is positioned within it.
+            gridItem1 contains the header
+            gridItem2 contains the navigation of the site
+            gridItem3 contains a space that can be use for Updates 
+            gridItem4 contains a small box for smaller assets such as site widgets or img
+            gridItem5 contains the main and houses the majority of the content
+            gridItem6 contains the footer 
+        -->
+        <div id="mainGrid">
+            <div id="gridItem1">
+                <div id="header">
+                    <h1 style="margin: 0;">Sip Sip Soup</h1>
+                </div>
+            </div>
+            <div id="gridItem2">
+                <!--
+                    This is the navigation sidebar. It is comprised of an 
+                    unordered list with links as the list items. If you add 
+                    more pages, make sure to add them to this list in order
+                    to make sure that you are able to access the pages.
+                      ---
+                    There is also a class for the active page. By adding the 
+                    class active, it has a bit of styling to indicate that 
+                    that is the active page.
+                    
+                    * Please make sure to change the link from '/themes/natural-grid/index.html'
+                    to 'index.html'. It is written this way in order to not conflict 
+                    with my own site.
+                 -->
+                <div id="navigation">
+                    <ul>
+                        <li>
+                            <a class="active" href="index.html">About</a>
+                        </li>
+                        <li>
+                            <a class="active" href="people.html">People</a>
+                        </li>
+                        <li>
+                            <a class="active" href="get_ratacombs.html">Get Ratacombs</a>
+                        </li>
+                        <li>
+                            <a class="active" href="https://discord.gg/Bz46vAh2hR"><img src="discord.png" alt="pixelated discord logo" style="width:52px;height:36px;"></a>
+                        </li>
+                    </ul>
+                </div>
+                <!--
+                    This is the button that controls the theme changer.
+                    Please do not edit the script if you are not familiar 
+                    with javascript.
+                -->
+                <button id="switch" onclick="toggleTheme()">
+                    Dark Mode &#9789;
+                </button>
+                <script>
+                    // func to set a theme
+                    function setTheme(themeName){
+                        localStorage.setItem('theme', themeName);
+                        document.documentElement.className = themeName;
+                    }
+                    // func to toggle between themes
+                    function toggleTheme(){
+                        if (localStorage.getItem('theme') === 'themeDark'){
+                            setTheme('themeLight');
+                            document.getElementById('switch').innerHTML = "Dark Mode &#9789;"
+                        } else {
+                            setTheme('themeDark');
+                            document.getElementById('switch').innerHTML = "Light Mode &#9788"
+                        }
+                    }
+                    // immediately invoked to set theme on load
+                    (function (){
+                        if (localStorage.getItem('theme') === 'themeDark'){
+                            setTheme('themeDark')
+                            document.getElementById('switch').innerHTML = "Light Mode &#9788"
+                        } else {
+                            setTheme('themeLight')
+                            document.getElementById('switch').innerHTML = "Dark Mode &#9789;"
+                        }
+                    })();
+                </script>
+            </div>
+            <div id="gridItem3">
+                <div class="title">
+                    <h2 style="text-align: right;">
+                        Updates
+                    </h2>
+                </div>
+                <div class="content">
+                    <ul>
+                        <li> Site Launch!</li>
+                        <li> Alpha released privately on Steam.</li>
+                    </ul>
+                </div>
+            </div>
+            <div id="gridItem4">
+                <center>
+                <p style="margin: var(--spacing); text-align: center;">
+                    <img src="soup_temporary.gif" alt="Tiny temporary soup animation" style="width:128px;height:128px;">
+                </p>
+                </center>
+            </div>
+            <div id="gridItem5">
+                <main>
+                    <div class="title">
+                        <h2>
+                            Get Ratacombs!
+                        </h2>
+                    </div>
+                    <div class="content">
+                        <p>
+                            The game isn't live yet, but we'd love for you to stay updated via our <a href="https://discord.gg/Bz46vAh2hR">discord</a> where you can sign up as a playtester, keep up to date with the status of the game, or keep up with how you can support us.
+                        </p>
+                        <center>
+                        <img src="screenshot1.png" alt="A screenshot of the game featuring a retro medevial background with diagetic UI." style="width:640px;height:360px;">
+                        </center>
+                        <p>
+                            (Early screenshot, does not convey final gameplay!)
+                        </p>
+                    </div>
+                </main>
+
+            </div>
+            <div id="gridItem6">
+                <!-- This is the footer. Please don't remove the theme credit!  -->
+                <footer>
+                    Contact us at <b>noemi@sipsipsoup.com</b> ------- Site Theme by <a href="https://5493.neocities.org/">5493</a>
+                </footer>
+            </div>
+        </div>
+    </body>
+</html>
