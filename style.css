@@ -1,0 +1,226 @@
+/*
+--Fonts-- 
+    These are the font faces used for this theme. 
+    If you would like to change the fonts used, replace
+    the source url with a new font file. do not change 
+    the font family name, as this is used throughout 
+    this stylesheet. 
+*/
+@font-face {
+    font-family: 'header';
+    src: url(origa___.ttf);
+}
+@font-face {
+    font-family: 'title';
+    src: url(Pixel\ Square\ Bold10.ttf);
+}
+@font-face {
+    font-family: 'main';
+    src: url(Pixel\ Square\ 10.ttf);
+}
+/*
+    I have set up some variables for the colors 
+    used throughout the theme. Here, you can easily change 
+    the colors/values of multiple elements. These values are
+    reffered to throughout this stylesheet, so please do not 
+    change the names of the variables. 
+
+    themeLight and themeDark have the same colors, just reversed.
+    If you change these, please make sure to use colors with 
+    a minimum contrast of 4.5 : 1 (can be checked in inspector under
+    accessibility or with color contrast checker)
+*/
+
+:root{
+    --spacing: 13px;
+}
+
+.themeLight{
+    --mainColor: #eed09e;
+    --accColor: #a88b5b;
+    --mainText: #292216;
+    --accText: #685638;
+}
+
+.themeDark{
+    --mainColor: #292216;
+    --accColor: #685638;
+    --mainText: #eed09e;
+    --accText: #a88b5b;
+}
+
+*{
+    scrollbar-color: var(--mainText) var(--mainColor);
+}
+
+a{
+    color: var(--accText);
+}
+a:hover{
+    color: var(--mainText);
+}
+a:visited{
+    color: var(--mainText);
+}
+html{
+    background-color: var(--mainColor);
+    color: var(--mainText);
+    font-family: 'main';
+    font-size: 1.1em;
+}
+footer{
+    text-align: center;
+    margin: 5px;
+    color: var(--accText);
+}
+
+#mainGrid{
+    display: grid;
+    grid-template-columns: 20% auto 20%;
+    grid-template-rows: auto 162px 362px;
+    width: 900px;
+    margin: 30px auto;  
+}
+
+#gridItem1{
+    grid-column: 1/4;
+    grid-row: 1/2;
+    border: var(--accColor) 3px dashed;
+}
+#gridItem2{
+    grid-column: 1/2;
+    grid-row: 2/4;
+    border: var(--accColor) 3px dashed;
+    border-top: none;
+    position: relative;
+}
+
+#gridItem3{
+    grid-column: 2/3;
+    grid-row: 2/3;
+    overflow: scroll;
+    border: var(--accColor) 3px dashed;
+    border-top: none;
+    border-left: none;
+}
+#gridItem4{
+    grid-column: 3/4;
+    grid-row: 2/3;
+    overflow: scroll;
+    border: var(--accColor) 3px dashed;
+    border-top: none;
+    border-left: none;
+}
+#gridItem5{
+    grid-column: 2/4;
+    grid-row: 3/4;
+    overflow: scroll;
+    border: var(--accColor) 3px dashed;
+    border-top: none;
+    border-left: none;
+}
+
+#gridItem5 img{
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+    display: block;
+}
+
+#gridItem6{
+    grid-column: 1/4;
+    grid-row: 4/5;
+    border: var(--accColor) 3px dashed;
+    border-top: none;
+}
+
+#header{
+    font-family: 'header';
+    font-size: 2em;
+    text-align: center;
+    margin: var(--spacing);
+}
+
+#navigation ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+#navigation li a{
+    display: block;
+    text-align: center;
+    text-decoration: none;
+    background-color: var(--mainColor);
+    color: var(--accText);
+    padding: var(--spacing);
+}
+#navigation li a:hover{
+    background-color: var(--accColor);
+}
+#navigation li a:hover::before, #navigation li a:hover::after{
+    content: ' ▫ ';
+}
+#navigation li a.active::before, #navigation li a.active::after{
+    content: ' ▪ ';
+}
+
+#switch{
+    display: block;
+    /* position: absolute; //blocked out because it caused it to cover nav buttons - kati*/
+    bottom: 0;
+    font-family: 'main';
+    background-color: var(--accText);
+    color: var(--mainColor);
+    padding: var(--spacing);
+    text-align: center;
+    border: none;
+    width: 100%;
+    
+}
+#switch:hover{
+    color: var(--mainColor);
+    background-color: var(--mainText);
+}
+
+.title{
+    font-family: 'title';
+    background-color: var(--accColor);
+    
+}
+.title h2{
+    margin: var(--spacing);
+    padding: var(--spacing);
+    
+}
+.content{
+    margin: var(--spacing);
+}
+
+@media (min-height: 750px) and (max-height: 865px){
+    #mainGrid{
+        grid-template-rows: auto 162px 494px;
+    }
+}
+
+@media (max-width: 896px){
+    html{
+        font-size: 1em;
+    }
+    #mainGrid{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+    }
+    #header{
+        font-size: 1.5em;
+    }
+    #gridItem3{
+        border-left: var(--accColor) 3px dashed;
+    }
+    #gridItem4{
+        border-left: var(--accColor) 3px dashed;
+    }
+    #gridItem5{
+        border-left: var(--accColor) 3px dashed;
+    } 
+}
